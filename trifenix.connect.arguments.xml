@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>trifenix.connect.graph</name>
+    </assembly>
+    <members>
+        <member name="T:trifenix.connect.graph.GraphApi">
+            <summary>
+            Operaciones de Microsoft Graph
+            para active directory
+            </summary>
+        </member>
+    </members>
+</doc>
