@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>trifenix.connect.graph</name>
+    </assembly>
+    <members>
+        <member name="T:trifenix.connect.graph.GraphApi">
+            <summary>
+            Operaciones de Microsoft Graph
+            para active directory
+            </summary>
+        </member>
+        <member name="M:trifenix.connect.graph.GraphApi.#ctor">
+            <summary>
+            Inicializa graph api
+            </summary>        
+        </member>
+        <member name="M:trifenix.connect.graph.GraphApi.CreateUserIntoActiveDirectory(System.String,System.String)">
+            <summary>
+            Crea un usuario en active directory
+            </summary>
+            <param name="name">nombre del usuario</param>
+            <param name="email">email del usuario</param>
+            <returns></returns>
+        </member>
+        <member name="M:trifenix.connect.graph.GraphApi.GetObjectIdFromEmail(System.String)">
+            <summary>
+            Obtiene el id de active directory desde el email
+            </summary>
+            <param name="email">correo del usuario</param>
+            <returns>identificador de AAD</returns>
+        </member>
+    </members>
+</doc>

@@ -8,7 +8,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using trifenix.connect.arguments;
 using trifenix.connect.interfaces.graph;
 
 namespace trifenix.connect.graph { 
@@ -20,13 +19,12 @@ namespace trifenix.connect.graph {
     public class GraphApi : IGraphApi {
 
         private readonly IConfidentialClientApplication _confidentialClientApplication;
-        private CosmosDbArguments arguments;
+        
 
         /// <summary>
-        /// utiliza los argumentos de active de cosmosdb
-        /// </summary>
-        /// <param name="arguments">? no se porque se utiliza</param>
-        public GraphApi(CosmosDbArguments arguments) {
+        /// Inicializa graph api
+        /// </summary>        
+        public GraphApi() {
             _confidentialClientApplication = ConfidentialClientApplicationBuilder
                 .Create(Environment.GetEnvironmentVariable("clientID", EnvironmentVariableTarget.Process))
                 .WithAuthority("https://login.microsoftonline.com/" + Environment.GetEnvironmentVariable("tenantID", EnvironmentVariableTarget.Process) + "/v2.0")

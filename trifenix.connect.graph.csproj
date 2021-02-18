@@ -58,7 +58,6 @@
     <PackageReference Include="Microsoft.Graph.Core" Version="1.21.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.19.0" />
     <PackageReference Include="trifenix.connect.interfaces" Version="0.8.13" />
-    <PackageReference Include="trifenix.connect.arguments" Version="0.8.46" />
   </ItemGroup>
 
  
