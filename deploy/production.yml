@@ -20,6 +20,12 @@ variables:
 pr: none
   
 steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'AGROFENIX-graph'
+    scannerMode: 'MSBuild'
+    projectKey: 'AGROFENIX-graph'
+    projectName: 'AGROFENIX-graph'
 
   - task: gitversion/setup@0
     inputs:
@@ -53,6 +59,10 @@ steps:
       versioningScheme: byEnvVar 
       versionEnvVar: SemVer
 
+  - task: SonarQubeAnalyze@4
+  - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: '300'
   # publica paquete para publicar.
   - task: PublishBuildArtifacts@1
     inputs:
