@@ -3,7 +3,7 @@
 trigger:
     branches:
       include:        
-        - master  
+        - feature/hello-world  
 pool:
   vmImage: "windows-latest"
 
@@ -11,18 +11,15 @@ variables:
   BuildConfiguration: 'release'
   # nombre del archivo csproj
   name-project: "trifenix.connect.graph"
-  branch: "master"
+  branch: "feature/hello-world"
   user: trifenix
   email: devops@trifenix.io
-
   
 # github ejecuta este build, para validar y ejecutar,
 # es decir, dos veces
 # esta instrucción asigna que no se ejecute en el pull request (para validar).
 # sino, que solo se ejecute al modificar la rama.
 pr: none
-
-
   
 steps:
 
@@ -38,16 +35,6 @@ steps:
     displayName: generando variable version con TRIFENIX VERSIONS
 
 
-
-  # configuración sonarqube  
-  - task: SonarQubePrepare@4
-    inputs:
-      SonarQube: 'AGROFENIX-graph'
-      scannerMode: 'MSBuild'
-      projectKey: 'AGROFENIX-graph'
-      projectName: 'AGROFENIX-graph'
-      projectVersion: '$(version)'      
-    displayName: preparación sonarqube
   
   
   #toma todos los proyectos que existan además de quien tiene el nuget.
@@ -56,7 +43,7 @@ steps:
       command: 'restore'
       projects: '**/*.csproj'
       feedsToUse: 'select'
-      vstsFeed: '$(default-feed)'      
+      vstsFeed: '$(draft-feed)'      
       versioningScheme: byBuildNumber
     displayName: restore dotnet
 
@@ -67,11 +54,7 @@ steps:
         dotnet pack $(name-project).csproj --configuration $(BuildConfiguration) /p:Version=$(version) --output $(Build.ArtifactStagingDirectory)
     displayName: dotnet pack
     
-  # especial : dotnet pack $(name-project).csproj --configuration $(BuildConfiguration) /p:Version=%var% --output $(Build.ArtifactStagingDirectory)
-  - task: SonarQubeAnalyze@4
-  - task: SonarQubePublish@4
-    inputs:
-      pollingTimeoutSec: '300'
+ 
   # publica paquete para publicar.
   - task: PublishBuildArtifacts@1
     inputs:
