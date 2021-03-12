@@ -39,15 +39,15 @@ steps:
 
 
 
-  # configuración sonarqube  
-  - task: SonarQubePrepare@4
-    inputs:
-      SonarQube: 'AGROFENIX-graph'
-      scannerMode: 'MSBuild'
-      projectKey: 'AGROFENIX-graph'
-      projectName: 'AGROFENIX-graph'
-      projectVersion: '$(version)'      
-    displayName: preparación sonarqube
+  # # configuración sonarqube  
+  # - task: SonarQubePrepare@4
+  #   inputs:
+  #     SonarQube: 'AGROFENIX-graph'
+  #     scannerMode: 'MSBuild'
+  #     projectKey: 'AGROFENIX-graph'
+  #     projectName: 'AGROFENIX-graph'
+  #     projectVersion: '$(version)'      
+  #   displayName: preparación sonarqube
   
   
   #toma todos los proyectos que existan además de quien tiene el nuget.
@@ -67,11 +67,11 @@ steps:
         dotnet pack $(name-project).csproj --configuration $(BuildConfiguration) /p:Version=$(version) --output $(Build.ArtifactStagingDirectory)
     displayName: dotnet pack
     
-  # especial : dotnet pack $(name-project).csproj --configuration $(BuildConfiguration) /p:Version=%var% --output $(Build.ArtifactStagingDirectory)
-  - task: SonarQubeAnalyze@4
-  - task: SonarQubePublish@4
-    inputs:
-      pollingTimeoutSec: '300'
+  # # especial : dotnet pack $(name-project).csproj --configuration $(BuildConfiguration) /p:Version=%var% --output $(Build.ArtifactStagingDirectory)
+  # - task: SonarQubeAnalyze@4
+  # - task: SonarQubePublish@4
+  #   inputs:
+  #     pollingTimeoutSec: '300'
   # publica paquete para publicar.
   - task: PublishBuildArtifacts@1
     inputs:
